@@ -24,3 +24,4 @@ before_install:
 script:
   - find -L /usr/local/Cellar -type f -name Python.h -o -name arrayobject.h
   - bazel build -c opt --copt=-Wno-sign-compare --show_progress_rate_limit=10 //:game
+  - bazel test -c opt --copt=-Wno-sign-compare --show_progress_rate_limit=10 --test_output=errors //third_party/... //deepmind/... //lua_tests/... $(bazel query //... | grep seed_level_)
